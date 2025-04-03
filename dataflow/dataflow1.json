@@ -12,7 +12,11 @@
 					"name": "source1"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"name": "sink1"
+				}
+			],
 			"transformations": [
 				{
 					"name": "select1"
@@ -22,9 +26,6 @@
 				},
 				{
 					"name": "split1"
-				},
-				{
-					"name": "derivedColumn1"
 				}
 			],
 			"scriptLines": [
@@ -61,12 +62,16 @@
 				"          industry as string,",
 				"          {Laid Off} as integer,",
 				"          percentage_laid_off as decimal(10,0),",
-				"          Date as date",
+				"          Date as date,",
+				"          funds_raised_millions as integer",
 				"     ),",
 				"     errors: true) ~> cast1",
 				"cast1 split(!isError(),",
 				"     disjoint: false) ~> split1@(goodrows, badrows)",
-				"split1@goodrows derive(percentage_laid_off = ERROR_FUNCTION('')) ~> derivedColumn1"
+				"split1@goodrows sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink1"
 			]
 		}
 	}
