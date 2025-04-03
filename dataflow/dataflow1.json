@@ -50,7 +50,8 @@
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> select1",
 				"select1 derive(Company = iifNull(Company, \"Unknown\", Company),",
-				"          Stage = ERROR_FUNCTION('')) ~> derivedColumn1"
+				"          industry = iifNull(industry, \"Unknown\", industry),",
+				"          {Laid Off} = ERROR_FUNCTION('')) ~> derivedColumn1"
 			]
 		}
 	}
