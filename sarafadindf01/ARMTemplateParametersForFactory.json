@@ -11,6 +11,12 @@
 		"SqlServer1_password": {
 			"value": ""
 		},
+		"link to raw_connectionString": {
+			"value": ""
+		},
+		"AzureSqlDatabade_password": {
+			"value": ""
+		},
 		"SqlServer1_properties_typeProperties_server": {
 			"value": "DESKTOP-40U6G1H\\SQLEXPRESS"
 		},
@@ -18,6 +24,15 @@
 			"value": "Layoffs"
 		},
 		"SqlServer1_properties_typeProperties_userName": {
+			"value": "haykay"
+		},
+		"AzureSqlDatabade_properties_typeProperties_server": {
+			"value": "haykayserver.database.windows.net"
+		},
+		"AzureSqlDatabade_properties_typeProperties_database": {
+			"value": "haykaydata"
+		},
+		"AzureSqlDatabade_properties_typeProperties_userName": {
 			"value": "haykay"
 		}
 	}

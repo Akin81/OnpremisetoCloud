@@ -11,9 +11,29 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage1'"
 		},
+		"link to raw_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'link to raw'"
+		},
+		"AzureSqlDatabade_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'AzureSqlDatabade'"
+		},
 		"SqlServer1_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'SqlServer1'"
+		},
+		"AzureSqlDatabade_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "haykayserver.database.windows.net"
+		},
+		"AzureSqlDatabade_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "haykaydata"
+		},
+		"AzureSqlDatabade_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "haykay"
 		},
 		"SqlServer1_properties_typeProperties_server": {
 			"type": "string",
@@ -46,12 +66,47 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/link to raw')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('link to raw_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/integrationRuntime1')]",
 			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"type": "SelfHosted",
 				"typeProperties": {}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlDatabade')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"server": "[parameters('AzureSqlDatabade_properties_typeProperties_server')]",
+					"database": "[parameters('AzureSqlDatabade_properties_typeProperties_database')]",
+					"encrypt": "mandatory",
+					"trustServerCertificate": false,
+					"authenticationType": "SQL",
+					"userName": "[parameters('AzureSqlDatabade_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('AzureSqlDatabade_password')]"
+					}
+				}
 			},
 			"dependsOn": []
 		},

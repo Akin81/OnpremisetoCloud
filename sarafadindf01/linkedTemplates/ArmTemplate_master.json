@@ -15,6 +15,14 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'SqlServer1'"
 		},
+		"link to raw_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'link to raw'"
+		},
+		"AzureSqlDatabade_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'AzureSqlDatabade'"
+		},
 		"SqlServer1_properties_typeProperties_server": {
 			"type": "string",
 			"defaultValue": "DESKTOP-40U6G1H\\SQLEXPRESS"
@@ -24,6 +32,18 @@
 			"defaultValue": "Layoffs"
 		},
 		"SqlServer1_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "haykay"
+		},
+		"AzureSqlDatabade_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "haykayserver.database.windows.net"
+		},
+		"AzureSqlDatabade_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "haykaydata"
+		},
+		"AzureSqlDatabade_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "haykay"
 		},
@@ -57,8 +77,23 @@
 					"AzureBlobStorage1_connectionString": {
 						"value": "[parameters('AzureBlobStorage1_connectionString')]"
 					},
+					"link to raw_connectionString": {
+						"value": "[parameters('link to raw_connectionString')]"
+					},
+					"AzureSqlDatabade_password": {
+						"value": "[parameters('AzureSqlDatabade_password')]"
+					},
 					"SqlServer1_password": {
 						"value": "[parameters('SqlServer1_password')]"
+					},
+					"AzureSqlDatabade_properties_typeProperties_server": {
+						"value": "[parameters('AzureSqlDatabade_properties_typeProperties_server')]"
+					},
+					"AzureSqlDatabade_properties_typeProperties_database": {
+						"value": "[parameters('AzureSqlDatabade_properties_typeProperties_database')]"
+					},
+					"AzureSqlDatabade_properties_typeProperties_userName": {
+						"value": "[parameters('AzureSqlDatabade_properties_typeProperties_userName')]"
 					},
 					"SqlServer1_properties_typeProperties_server": {
 						"value": "[parameters('SqlServer1_properties_typeProperties_server')]"
