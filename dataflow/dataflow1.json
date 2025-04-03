@@ -16,6 +16,9 @@
 			"transformations": [
 				{
 					"name": "select1"
+				},
+				{
+					"name": "derivedColumn1"
 				}
 			],
 			"scriptLines": [
@@ -45,7 +48,9 @@
 				"          funds_raised_millions",
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> select1"
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"select1 derive(Company = iifNull(Company, \"Unknown\", Company),",
+				"          Stage = ERROR_FUNCTION('')) ~> derivedColumn1"
 			]
 		}
 	}
