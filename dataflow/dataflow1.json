@@ -18,6 +18,12 @@
 					"name": "select1"
 				},
 				{
+					"name": "cast1"
+				},
+				{
+					"name": "split1"
+				},
+				{
 					"name": "derivedColumn1"
 				}
 			],
@@ -49,10 +55,14 @@
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> select1",
-				"select1 derive(Company = iifNull(Company, \"Unknown\", Company),",
-				"          industry = iifNull(industry, \"Unknown\", industry),",
-				"          {Laid Off} = iifNull({Laid Off}, \"0\", {Laid Off}),",
-				"          funds_raised_millions = iifNull(funds_raised_millions, \"0\", funds_raised_millions)) ~> derivedColumn1"
+				"select1 cast(output(",
+				"          {Laid Off} as integer,",
+				"          funds_raised_millions as integer",
+				"     ),",
+				"     errors: true) ~> cast1",
+				"cast1 split(!isError(),",
+				"     disjoint: false) ~> split1@(goodrows, badrows)",
+				"split1@goodrows derive(percentage_laid_off = ERROR_FUNCTION('')) ~> derivedColumn1"
 			]
 		}
 	}
