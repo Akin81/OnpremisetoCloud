@@ -7,11 +7,11 @@
 		"typeProperties": {
 			"server": "DESKTOP-40U6G1H\\SQLEXPRESS",
 			"database": "Layoffs",
-			"encrypt": "optional",
+			"encrypt": "mandatory",
 			"trustServerCertificate": true,
 			"authenticationType": "SQL",
 			"userName": "haykay",
-			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiIxZWFhYTZhZC02MmMyLTRiYzctOWUzYi1iMzIxMDU4Y2I4OGYiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiIyMjBiNTI5ZC1kNjcwLTRiZjctYjg0Yy02YmRhZmJkY2E5ZTMiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
 		},
 		"connectVia": {
 			"referenceName": "integrationRuntime1",
