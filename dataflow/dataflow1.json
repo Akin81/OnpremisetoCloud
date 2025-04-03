@@ -1,0 +1,52 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DelimitedText3",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "select1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          company as string,",
+				"          location as string,",
+				"          industry as string,",
+				"          total_laid_off as string,",
+				"          percentage_laid_off as string,",
+				"          date as string,",
+				"          stage as string,",
+				"          country as string,",
+				"          funds_raised_millions as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 select(mapColumn(",
+				"          Company = company,",
+				"          Location = location,",
+				"          industry,",
+				"          {Laid Off} = total_laid_off,",
+				"          percentage_laid_off,",
+				"          Date = date,",
+				"          Stage = stage,",
+				"          country,",
+				"          funds_raised_millions",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1"
+			]
+		}
+	}
+}
