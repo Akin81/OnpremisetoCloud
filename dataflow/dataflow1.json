@@ -52,7 +52,7 @@
 				"select1 derive(Company = iifNull(Company, \"Unknown\", Company),",
 				"          industry = iifNull(industry, \"Unknown\", industry),",
 				"          {Laid Off} = iifNull({Laid Off}, \"0\", {Laid Off}),",
-				"          funds_raised_millions = ERROR_FUNCTION('')) ~> derivedColumn1"
+				"          funds_raised_millions = iifNull(funds_raised_millions, \"0\", funds_raised_millions)) ~> derivedColumn1"
 			]
 		}
 	}
