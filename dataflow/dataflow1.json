@@ -51,7 +51,8 @@
 				"     skipDuplicateMapOutputs: true) ~> select1",
 				"select1 derive(Company = iifNull(Company, \"Unknown\", Company),",
 				"          industry = iifNull(industry, \"Unknown\", industry),",
-				"          {Laid Off} = ERROR_FUNCTION('')) ~> derivedColumn1"
+				"          {Laid Off} = iifNull({Laid Off}, \"0\", {Laid Off}),",
+				"          funds_raised_millions = ERROR_FUNCTION('')) ~> derivedColumn1"
 			]
 		}
 	}
