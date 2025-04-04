@@ -14,7 +14,11 @@
 			],
 			"sinks": [
 				{
-					"name": "sink1"
+					"dataset": {
+						"referenceName": "AzureSqlTable3",
+						"type": "DatasetReference"
+					},
+					"name": "sinktoazuresql"
 				}
 			],
 			"transformations": [
@@ -70,8 +74,26 @@
 				"     disjoint: false) ~> split1@(goodrows, badrows)",
 				"split1@goodrows sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
+				"     input(",
+				"          CompanyID as integer,",
+				"          Company as string,",
+				"          Location as string,",
+				"          Industry as string,",
+				"          Laid_Off as integer,",
+				"          Percentage_laid_off as decimal(5,2),",
+				"          Date as date,",
+				"          Stage as string,",
+				"          Country as string,",
+				"          Fund_raised_millions as decimal(15,2)",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> sink1"
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> sinktoazuresql"
 			]
 		}
 	}
